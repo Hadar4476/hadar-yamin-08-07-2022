@@ -11,12 +11,11 @@ const mixin = {
   computed: {
     ...mapGetters({
       city: "getCity",
-      searchResults: "getSearchResults",
       userFavorites: "getUserFavorites"
     })
   },
   methods: {
-    ...mapActions[("setWeather", "setSearchResults", "addCityToFavorites")],
+    ...mapActions[("setWeather", "addCityToFavorites")],
     setLoading() {
       this.isLoading = true;
     },

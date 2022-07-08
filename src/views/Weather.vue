@@ -3,7 +3,7 @@
     <div class="search-input">
       <div class="input">
         <label for="search_input"></label>
-        <input id="search_input" name="searchInput" type="text" v-model.trim="searchValue" />
+        <input id="search_input" name="searchInput" type="text" :value="searchValue" @change="onSearchValueChange" />
       </div>
       <div class="icon"></div>
     </div>
@@ -24,8 +24,7 @@ export default {
   name: "weather-page",
   data() {
     return {
-      searchValue: "",
-      showSearchResultsContainer: false
+      searchValue: ""
     };
   },
   async created() {
@@ -34,15 +33,15 @@ export default {
       await this.setCityHandler();
     }
   },
-  watch: {
-    async searchValue(val) {
-      if (val.length > 2) {
-        await this.setSearchResultsHandler();
-      }
-    }
-  },
   methods: {
-    async setSearchResultsHandler() {
+    async onSearchValueChange(event) {
+      const { value } = event.target;
+
+      this.searchValue = value.trim();
+
+      if (event.keyCode === 13) {
+        await this.setCityHandler();
+      }
       // try {
       //   const response = await axios.get("");
       // } catch (error) {
@@ -50,11 +49,13 @@ export default {
       // }
     },
     async setCityHandler() {
-      // try {
-      //   const response = await axios.get("");
-      // } catch (error) {
-      //   this.setError(error.message);
-      // }
+      if (this.searchValue.length > 2) {
+        // try {
+        //   const response = await axios.get("");
+        // } catch (error) {
+        //   this.setError(error.message);
+        // }
+      }
     },
     getDayShortName() {
       // return moment().format("dddd");
