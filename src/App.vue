@@ -17,10 +17,10 @@ export default {
 </script>
 
 <style lang="scss">
-@import "sass/global.scss";
+@import "assets/scss/global.scss";
 
 .app {
   height: 100vh;
-  background-color: yellow;
+  background: linear-gradient($color-primary, $color-secondary);
 }
 </style>
